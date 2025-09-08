@@ -1,7 +1,5 @@
 #include <FS.h>
 
-// needed for library
-#include <DNSServer.h>
 #include <Ticker.h>
 #include <ArduinoJson.h>
 #include <Button2.h>
@@ -97,6 +95,9 @@ void wifiEventHandler(WIFI_MANAGER_EVENTS event)
     Serial.println("Connected to WiFi");
     ticker.detach();
     digitalWrite(2, HIGH);
+#ifdef MDNS_ENABLED
+    mdnsSetup(deviceConfig.hostname);
+#endif
     break;
   case STATION_DISCONNECTED:
     Serial.println("Disconnected from WiFi");
@@ -145,10 +146,6 @@ void setup()
   sprintf(apSsid, "garage-%d", ESP.getChipId());
   wifi_manager_setEventHandler(wifiEventHandler);
   wifi_manager_setup(deviceConfig.wifiSsid, deviceConfig.wifiPassword, apSsid);
-
-#ifdef MDNS_ENABLED
-  mdnsSetup(deviceConfig.hostname);
-#endif
 
 #ifdef OTA_ENABLED
   otaSetup(deviceConfig.hostname);

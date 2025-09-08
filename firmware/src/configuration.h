@@ -2,7 +2,6 @@
 #define Configuration_h
 
 #include <Arduino.h>
-#include <Ticker.h>
 
 #define CLIENT_ID "garage-door-%i"
 #define RELAY_PIN 14
