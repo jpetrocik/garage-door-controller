@@ -20,7 +20,7 @@ Button2 relay;
 
 DeviceConfig deviceConfig;
 
-char apSsid[18];
+char apSsid[sizeof(CLIENT_ID) + 10];
 
 void sendCurrentStatus(boolean changed);
 void tick();
@@ -143,7 +143,7 @@ void setup()
   relay.setDebounceTime(500);
   relay.setChangedHandler(handlerRelayStateChange);
 
-  sprintf(apSsid, "garage-%d", ESP.getChipId());
+  sprintf(apSsid, CLIENT_ID, ESP.getChipId());
   wifi_manager_setEventHandler(wifiEventHandler);
   wifi_manager_setup(deviceConfig.wifiSsid, deviceConfig.wifiPassword, apSsid);
 
