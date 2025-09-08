@@ -88,7 +88,6 @@ void mqttConnect()
       Serial.println("Connected to MQTT Server");
       _mqClient.publish(_lwtTopic, "Online", true);
       _mqClient.subscribe(_commandTopic);
-      _mqClient.subscribe(_statusTopic);
 
       _reconnectAttemptCounter = 0;
       _nextReconnectAttempt = 0;

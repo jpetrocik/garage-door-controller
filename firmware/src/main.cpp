@@ -190,6 +190,10 @@ void loop()
 #ifdef WEBSERVER_ENABLED
   webServerLoop();
 #endif
+
+#ifdef OTA_ENABLED
+  otaLoop();
+#endif
 }
 
 void sendCurrentStatus(boolean hasChanged)

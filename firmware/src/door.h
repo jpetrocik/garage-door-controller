@@ -1,7 +1,7 @@
 #ifndef DOOR_H
 #define DOOR_H
 
-enum DOOR_STATE { DOOR_OPENED, DOOR_CLOSED};
+enum DOOR_STATE { DOOR_CLOSED, DOOR_OPENED};
 
 void toogleDoor();
 void openDoor();
