@@ -7,8 +7,6 @@
 #define RELAY_PIN 12
 #define LED_PIN 2
 #define BUTTON_PIN 0
-// #define DOOR_CLOSE 0
-// #define DOOR_OPEN 1
 
 #define LED_ON 0
 #define LED_OFF 1
