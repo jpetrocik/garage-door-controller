@@ -1,7 +1,19 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-enum RELAY_STATE { RELAY_OPEN, RELAY_CLOSED};
+#ifdef RELAY_INVERTED
+enum RELAY_STATE
+{
+    RELAY_CLOSED,
+    RELAY_OPEN
+};
+#elif
+enum RELAY_STATE
+{
+    RELAY_OPEN,
+    RELAY_CLOSED
+};
+#endif
 
 void toogleRelay();
 void openRelay();
