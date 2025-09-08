@@ -1,21 +1,3 @@
-# PlatformIO
-firmware/.pio/
-firmware/.pioenvs/
-firmware/.piolibdeps/
-
-# VSCode (if using PlatformIO with VSCode)
-firmware/.vscode/c_cpp_properties.json
-firmware/.vscode/launch.json
-firmware/.vscode/settings.json
-firmware/.vscode/.browse.c_cpp.db
-
-# Build artifacts
-**/*.hex
-**/*.bin
-**/*.elf
-**/*.map
-**/*.lst
-
 # Other common ignores
 *.bak
 *.swp

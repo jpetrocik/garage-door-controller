@@ -9,17 +9,4 @@
 .vscode/settings.json
 .vscode/.browse.c_cpp.db
 
-# Build artifacts
-**/*.hex
-**/*.bin
-**/*.elf
-**/*.map
-**/*.lst
-
-# Other common ignores
-*.bak
-*.swp
-*~
-*.log
-.DS_Store
-Thumbs.db
+lib/wifimanager
