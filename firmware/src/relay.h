@@ -7,7 +7,7 @@ enum RELAY_STATE
     RELAY_CLOSED,
     RELAY_OPEN
 };
-#elif
+#else
 enum RELAY_STATE
 {
     RELAY_OPEN,
