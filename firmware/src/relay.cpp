@@ -2,11 +2,11 @@
 #include "configuration.h"
 #include "relay.h"
 
-void operateDoor()
+void operateDoor(RELAY_STATE)
 {
-    digitalWrite(RELAY_PIN, RELAY_CLOSED);
+    digitalWrite(14, RELAY_CLOSED);
     delay(1000);
-    digitalWrite(RELAY_PIN, RELAY_OPEN);
+    digitalWrite(14, RELAY_OPEN);
 }
 
 void toogleRelay()
@@ -28,7 +28,7 @@ void openRelay()
     if (currentRelayState == RELAY_OPEN)
         return;
 
-    operateDoor();
+    operateDoor(RELAY_OPEN);
 }
 
 void closeRelay()
@@ -37,7 +37,7 @@ void closeRelay()
     if (currentRelayState == RELAY_CLOSED)
         return;
 
-    operateDoor();
+    operateDoor(RELAY_CLOSED);
 }
 
 RELAY_STATE relayState()

@@ -16,7 +16,7 @@
 Ticker ticker;
 
 Button2 button;
-Button2 doorReedSwitch;
+Button2 relay;
 
 DeviceConfig deviceConfig;
 
@@ -77,7 +77,7 @@ void longReleaseButtonHandler(Button2 &btn)
   }
 }
 
-void handlerDoorStatusChange(Button2 &btn)
+void handlerRelayStateChange(Button2 &btn)
 {
   sendCurrentStatus(true);
   digitalWrite(LED_PIN, btn.isPressed() ? LED_OFF : LED_ON);
@@ -129,8 +129,8 @@ void setup()
   pinMode(LED_PIN, OUTPUT);
   digitalWrite(LED_PIN, LED_OFF);
 
-  pinMode(RELAY_PIN, OUTPUT);
-  digitalWrite(RELAY_PIN, RELAY_OPEN);
+  pinMode(14, OUTPUT);
+  digitalWrite(14, RELAY_OPEN);
 
   button.begin(BUTTON_PIN, INPUT);
   button.setClickHandler(buttonReleasedHandler);
@@ -139,9 +139,9 @@ void setup()
   button.setLongClickDetectedHandler(longPressButtonHandler);
   button.setLongClickHandler(longReleaseButtonHandler);
 
-  doorReedSwitch.begin(DOOR_STATUS_PIN);
-  doorReedSwitch.setDebounceTime(500);
-  doorReedSwitch.setChangedHandler(handlerDoorStatusChange);
+  relay.begin(RELAY_PIN);
+  relay.setDebounceTime(500);
+  relay.setChangedHandler(handlerRelayStateChange);
 
   sprintf(apSsid, "garage-%d", ESP.getChipId());
   wifi_manager_setEventHandler(wifiEventHandler);
@@ -172,7 +172,7 @@ void loop()
   }
 
   button.loop();
-  doorReedSwitch.loop();
+  relay.loop();
 
   wifi_manager_loop();
 

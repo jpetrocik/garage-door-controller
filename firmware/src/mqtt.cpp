@@ -95,7 +95,6 @@ void mqttConnect()
     else
     {
       Serial.println("Failed to connect to MQTT Server");
-      // Serial.println(mqttHost);
 
       _reconnectAttemptCounter++;
       _nextReconnectAttempt = sq(_reconnectAttemptCounter) * 1000;
@@ -111,7 +110,6 @@ void mqttConnect()
   }
 }
 
-// callback when a mqtt message is recieved
 void mqttCallback(char *topic, byte *payload, unsigned int length)
 {
   if ((char)payload[0] == '0')

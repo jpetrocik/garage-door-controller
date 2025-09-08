@@ -4,10 +4,9 @@
 #include <Arduino.h>
 
 #define CLIENT_ID "garage-door-%i"
-#define RELAY_PIN 14
+#define RELAY_PIN 12
 #define LED_PIN 2
 #define BUTTON_PIN 0
-#define DOOR_STATUS_PIN 12
 // #define DOOR_CLOSE 0
 // #define DOOR_OPEN 1
 
