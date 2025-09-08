@@ -11,9 +11,6 @@
 // #define DOOR_CLOSE 0
 // #define DOOR_OPEN 1
 
-#define RELAY_CLOSE 1
-#define RELAY_OPEN 0
-
 #define LED_ON 0
 #define LED_OFF 1
 

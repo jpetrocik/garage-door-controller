@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <ESP8266WebServer.h>
 #include <ArduinoJson.h>
-#include "door.h"
+#include "relay.h"
 
 ESP8266WebServer server(80);
 char webserver_jsonStatusBuffer[300];
@@ -15,21 +15,21 @@ void webServerLoop()
   server.handleClient();
 }
 
-void handleOpenDoor()
+void handleOpenRelay()
 {
-  openDoor();
+  openRelay();
   server.send(200);
 }
 
-void handleCloseDoor()
+void handleCloseRelay()
 {
-  closeDoor();
+  closeRelay();
   server.send(200);
 }
 
 void handleStatus()
 {
-  sprintf(webserver_jsonStatusBuffer, "{\"status\":%i, \"changed\":false}", (int)doorState());
+  sprintf(webserver_jsonStatusBuffer, "{\"status\":%i, \"changed\":false}", (int)relayState());
   server.send(200, "application/json", webserver_jsonStatusBuffer);
 }
 
@@ -115,8 +115,8 @@ void webServerSetup(DeviceConfig *deviceConfig)
 
   Serial.println("Starting web server on port 80");
   server.on("/", handleStatus);
-  server.on("/open", handleOpenDoor);
-  server.on("/close", handleCloseDoor);
+  server.on("/open", handleCloseRelay);
+  server.on("/close", handleOpenRelay);
   server.on("/restart", HTTP_POST, handleRestart);
   server.on("/config", HTTP_GET, handleConfigureDevice);
   server.on("/config", HTTP_PUT, handleSaveConfigureDevice);

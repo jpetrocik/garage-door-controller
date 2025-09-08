@@ -6,7 +6,7 @@
 #include <ESP8266WiFi.h>
 
 #include "configuration.h"
-#include "door.h"
+#include "relay.h"
 #include "wifimanager.h"
 #include "mqtt.h"
 #include "mdns.h"
@@ -41,7 +41,7 @@ void detach()
 
 void buttonReleasedHandler(Button2 &btn)
 {
-  toogleDoor();
+  toogleRelay();
 }
 
 void longPressButtonHandler(Button2 &btn)

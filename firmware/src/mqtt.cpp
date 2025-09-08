@@ -5,7 +5,7 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <WiFiClient.h>
-#include "door.h"
+#include "relay.h"
 
 WiFiClient _espClient;
 PubSubClient _mqClient(_espClient);
@@ -116,11 +116,11 @@ void mqttCallback(char *topic, byte *payload, unsigned int length)
 {
   if ((char)payload[0] == '0')
   {
-    closeDoor();
+    openRelay();
   }
   else if ((char)payload[0] == '1')
   {
-    openDoor();
+    closeRelay();
   }
   else if ((char)payload[0] == '3')
   {
@@ -130,9 +130,9 @@ void mqttCallback(char *topic, byte *payload, unsigned int length)
 
 void mqttSendStatus(boolean hasChanged)
 {
-  DOOR_STATE currentDoorState = (DOOR_STATE)doorState();
+  RELAY_STATE currentRelayState = (RELAY_STATE)relayState();
 
-  sprintf(_jsonStatusBuffer, "{\"status\":%i, \"changed\":%s}", (int)currentDoorState, hasChanged ? "true" : "false");
+  sprintf(_jsonStatusBuffer, "{\"status\":%i, \"changed\":%s}", (int)currentRelayState, hasChanged ? "true" : "false");
 
   if (_mqClient.connected())
   {
